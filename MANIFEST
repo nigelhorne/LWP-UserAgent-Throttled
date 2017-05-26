@@ -1,0 +1,8 @@
+Changes
+lib/LWP/Throttle.pm
+LICENSE
+Makefile.PL
+MANIFEST			This list of files
+README
+README.md
+t/request.t
