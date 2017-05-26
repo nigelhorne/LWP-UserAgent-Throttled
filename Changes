@@ -1,6 +1,6 @@
 Revision history for LWP-UserAgent-Throttled
 
-0.02
+0.02	Fri May 26 14:18:13 EDT 2017
 	Support load times which include fractions of a second
 	Only sleep on 2nd and subsequent calls
 	Renamed from LWP::Throttle
