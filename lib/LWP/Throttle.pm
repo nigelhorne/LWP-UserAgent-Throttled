@@ -42,7 +42,7 @@ sub new {
 	my $rc = $class->SUPER::new(@_);
 	$rc->{'load'} = 1;
 	
-	return $rc;
+	return bless $rc, $class;
 }
 
 =head2 send_request
