@@ -94,6 +94,8 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 =head1 BUGS
 
+There is one global throttle, it should be per site.
+
 =head1 SEE ALSO
 
 L<LWP::UserAgent>

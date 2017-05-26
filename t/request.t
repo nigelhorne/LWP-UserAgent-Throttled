@@ -2,7 +2,7 @@
 
 use warnings;
 use strict;
-use Test::Most tests => 10;
+use Test::Most tests => 11;
 
 BEGIN {
 	use_ok('LWP::UserAgent::Throttled');
@@ -10,7 +10,7 @@ BEGIN {
 }
 
 THROTTLE: {
-	diag('This will take some time because of timeouts');
+	diag('This will take some time because of sleeps');
 
 	my $ua = new_ok('LWP::UserAgent::Throttled');
 
@@ -19,6 +19,7 @@ THROTTLE: {
 	$ua->timeout(15);
 	$ua->env_proxy(1);
 
+	ok($ua->load() == 1);
 	$ua->load(10);
 	ok($ua->load() == 10);
 
