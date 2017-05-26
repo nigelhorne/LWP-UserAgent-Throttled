@@ -1,13 +1,13 @@
-package LWP::Throttle;
+package LWP::UserAgent::Throttled;
 
 use LWP;
-use Sub::Throttle 'throttle';
+use Time::HiRes;
 
 our @ISA = ('LWP::UserAgent');
 
 =head1 NAME
 
-LWP::Throttle - Throttle requests to a site
+LWP::UserAgent::Throttled - Throttle requests to a site
 
 =head1 VERSION
 
@@ -21,10 +21,12 @@ our $VERSION = '0.01';
 
 Some sites with REST APIs, such as openstreetmap.org, will blacklist you if you do too many requests.
 
-    use LWP::Throttle;
-    my $ua = LWP::Throttle->new();
-    $ua->load(1);
+    use LWP::UserAgent::Throttled;
+    my $ua = LWP::UserAgent::Throttled->new();
+    $ua->load(5);
     print $ua->get('http://www.example.com');
+    sleep (2);
+    print $ua->get('http://www.example.com');	# Will wait at least 3 seconds before the GET is sent
 
 =cut
 
@@ -32,7 +34,7 @@ Some sites with REST APIs, such as openstreetmap.org, will blacklist you if you 
 
 =head2 new
 
-Creates a LWP::Throttle object.
+Creates a LWP::UserAgent::Throttled object.
 
 =cut
 
@@ -53,7 +55,20 @@ See L<LWP::UserAgent>.
 
 sub send_request {
 	my $self = shift;
-	return throttle($self->{'load'}, \&LWP::UserAgent::send_request, ($self, @_));
+
+	if(defined($self->{'load'})) {
+		if($self->{'lastcallended'}) {
+			my $now = Time::HiRes::time();
+			my $waittime = $self->{'load'} - (Time::HiRes::time() - $self->{'lastcallended'});
+
+			if($waittime > 0) {
+				Time::HiRes::usleep($waittime * 1e6);
+			}
+		}
+	}
+	my $rc = $self->SUPER::send_request(@_);
+	$self->{'lastcallended'} = Time::HiRes::time();
+	return $rc;
 }
 
 =head2 load
@@ -81,8 +96,7 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 =head1 SEE ALSO
 
-L<LWP::UserAgent>,
-L<Sub::Throttle>
+L<LWP::UserAgent>
 
 =head1 SUPPORT
 

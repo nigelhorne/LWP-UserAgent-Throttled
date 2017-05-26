@@ -1,4 +1,4 @@
-# LWP::Throttle
+# LWP::UserAgent::Throttled
 
 Throttle requests to a site
 
@@ -10,16 +10,18 @@ Version 0.01
 
 Some sites with REST APIs, such as openstreetmap.org, will blacklist you if you do too many requests.
 
-    use LWP::Throttle;
-    my $ua = LWP::Throttle->new();
-    $ua->load(1);
+    use LWP::UserAgent::Throttled;
+    my $ua = LWP::UserAgent::Throttled->new();
+    $ua->load(5);
     print $ua->get('http://www.example.com');
+    sleep (2);
+    print $ua->get('http://www.example.com');   # Will wait at least 3 seconds before the GET is sent
 
 # SUBROUTINES/METHODS
 
 ## new
 
-Creates a LWP::Throttle object.
+Creates a LWP::UserAgent::Throttled object.
 
 ## send\_request
 
@@ -37,8 +39,7 @@ Nigel Horne, `<njh at bandsman.co.uk>`
 
 # SEE ALSO
 
-[LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent),
-[Sub::Throttle](https://metacpan.org/pod/Sub::Throttle)
+[LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent)
 
 # SUPPORT
 

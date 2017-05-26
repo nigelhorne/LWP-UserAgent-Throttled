@@ -3,10 +3,10 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    NAME		=> 'LWP::Throttle',
+    NAME		=> 'LWP::UserAgent::Throttled',
     AUTHOR		=> q{Nigel Horne <njh@bandsman.co.uk>},
-    VERSION_FROM	=> 'lib/LWP/Throttle.pm',
-    ABSTRACT_FROM       => 'lib/LWP/Throttle.pm',
+    VERSION_FROM	=> 'lib/LWP/UserAgent/Throttled.pm',
+    ABSTRACT_FROM       => 'lib/LWP/UserAgent/Throttled.pm',
     ((defined($ExtUtils::MakeMaker::VERSION) &&
      ($ExtUtils::MakeMaker::VERSION >= 6.3002))
       ? ('LICENSE'=> 'GPL')
@@ -14,25 +14,26 @@ WriteMakefile(
     PL_FILES	=> {},
     BUILD_REQUIRES => {
 	'Test::Most' => 0,
+	'Test::Timer' => 0,
 	# 'Test::Kwalitee' => 0,
     },
     PREREQ_PM => {
 	'LWP::UserAgent' => 0,
-	'Sub::Throttle' => 0,
+	'Time::HiRes' => 0,
     },
     dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean		=> { FILES => 'LWP-Throttle-*' },
+    clean		=> { FILES => 'LWP-UserAgent::Throttled-*' },
     META_MERGE		=> {
     	'meta-spec' => { version => 2 },
     	resources => {
     		repository => {
 			type => 'git',
-			url => 'git://github.com/nigelhorne/LWP-Throttle.git',
-			web => 'https://github.com/nigelhorne/LWP-Throttle',
+			url => 'git://github.com/nigelhorne/LWP-UserAgent::Throttled.git',
+			web => 'https://github.com/nigelhorne/LWP-UserAgent::Throttled',
     		},
 		bugtracker => {
-			web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=LWP-Throttle',
-			mailto => 'bug-LWP-Throttle@rt.cpan.org'
+			web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=LWP-UserAgent::Throttled',
+			mailto => 'bug-LWP-UserAgent::Throttled@rt.cpan.org'
 		}
 	},
     },

@@ -2,19 +2,38 @@
 
 use warnings;
 use strict;
-use Test::Most tests => 4;
+use Test::Most tests => 10;
 
 BEGIN {
-	use_ok('LWP::Throttle');
+	use_ok('LWP::UserAgent::Throttled');
+	use_ok('Test::Timer');
 }
 
 THROTTLE: {
-	my $ua = new_ok('LWP::Throttle');
+	diag('This will take some time because of timeouts');
 
-	$ua->load(1);
-	ok($ua->load() == 1);
+	my $ua = new_ok('LWP::UserAgent::Throttled');
 
-	my $response = $ua->get('http://search.cpan.org/');
+	$Test::Timer::alarm = 20;
+
+	$ua->timeout(15);
+	$ua->env_proxy(1);
+
+	$ua->load(10);
+	ok($ua->load() == 10);
+
+	my $response;
+	time_atmost(sub { $response = $ua->get('http://search.cpan.org/'); }, 8, 'should not be throttled');
+
+	ok($response->is_success());
+
+	sleep(8);
+
+	time_between(sub { $response = $ua->get('http://search.cpan.org/'); }, 1, 6, 'should be throttled to 2 seconds, not 10');
+
+	ok($response->is_success());
+
+	time_atleast(sub { $response = $ua->get('http://search.cpan.org/'); }, 9, 'should be fully throttled');
 
 	ok($response->is_success());
 }
