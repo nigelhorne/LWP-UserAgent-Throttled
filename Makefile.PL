@@ -14,14 +14,11 @@ WriteMakefile(
     PL_FILES	=> {},
     BUILD_REQUIRES => {
 	'Test::Most' => 0,
-	'Test::CleanNamespaces' => 0,
 	# 'Test::Kwalitee' => 0,
-	'autodie' => 0,
     },
     PREREQ_PM => {
 	'LWP::UserAgent' => 0,
 	'Sub::Throttle' => 0,
-	'namespace::clean' => 0,
     },
     dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean		=> { FILES => 'LWP-Throttle-*' },
