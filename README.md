@@ -4,11 +4,12 @@ Throttle requests to a site
 
 # VERSION
 
-Version 0.02
+Version 0.03
 
 # SYNOPSIS
 
 Some sites with REST APIs, such as openstreetmap.org, will blacklist you if you do too many requests.
+LWP::UserAgent::Throttled is a sub-class of LWP::UserAgent.
 
     use LWP::UserAgent::Throttled;
     my $ua = LWP::UserAgent::Throttled->new();
