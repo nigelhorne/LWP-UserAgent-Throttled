@@ -28,7 +28,7 @@ WriteMakefile(
     	resources => {
     		repository => {
 			type => 'git',
-			url => 'git://github.com/nigelhorne/LWP-UserAgent::Throttled.git',
+			url => 'git://github.com/nigelhorne/LWP-UserAgent-Throttled.git',
 			web => 'https://github.com/nigelhorne/LWP-UserAgent::Throttled',
     		},
 		bugtracker => {
