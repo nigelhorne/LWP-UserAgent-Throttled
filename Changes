@@ -1,5 +1,8 @@
 Revision history for LWP-UserAgent-Throttled
 
+0.04	Sat 27 May 14:43:36 EDT 2017
+	Important code tidy - forgot some hashrefs now hash
+
 0.03	Sat 27 May 14:04:14 EDT 2017
 	Throttle each site independantly
 	Changed 'load' method to 'throttle'

@@ -11,11 +11,11 @@ LWP::UserAgent::Throttled - Throttle requests to a site
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
@@ -44,11 +44,10 @@ sub send_request {
 	my ($request, $arg, $size) = @_;
 	my $host = $request->uri()->host();
 
-	if(defined($self->{'throttle'})) {
-
-		if($self->{'lastcallended'}->{$host}) {
+	if((defined($self->{'throttle'})) && $self->{'throttle'}{$host}) {
+		if($self->{'lastcallended'}{$host}) {
 			my $now = Time::HiRes::time();
-			my $waittime = $self->{'throttle'}->{$host} - (Time::HiRes::time() - $self->{'lastcallended'}->{$host});
+			my $waittime = $self->{'throttle'}{$host} - (Time::HiRes::time() - $self->{'lastcallended'}{$host});
 
 			if($waittime > 0) {
 				Time::HiRes::usleep($waittime * 1e6);
