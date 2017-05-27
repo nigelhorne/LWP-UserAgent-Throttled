@@ -137,4 +137,4 @@ This program is released under the following licence: GPL2
 
 =cut
 
-1; # End of LWP-Throttle
+1; # End of LWP::Throttle

@@ -20,10 +20,6 @@ LWP::UserAgent::Throttled is a sub-class of LWP::UserAgent.
 
 # SUBROUTINES/METHODS
 
-## new
-
-Creates a LWP::UserAgent::Throttled object.
-
 ## send\_request
 
 See [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent).
