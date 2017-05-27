@@ -18,6 +18,8 @@ if($@) {
 }
 
 __END__
-openstreetmap
 AnnoCPAN
 GPL
+openstreetmap
+org
+RT

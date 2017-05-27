@@ -12,7 +12,7 @@ Some sites with REST APIs, such as openstreetmap.org, will blacklist you if you 
 
     use LWP::UserAgent::Throttled;
     my $ua = LWP::UserAgent::Throttled->new();
-    $ua->load(5);
+    $ua->throttle({ 'www.example.com' => 5 });
     print $ua->get('http://www.example.com');
     sleep (2);
     print $ua->get('http://www.example.com');   # Will wait at least 3 seconds before the GET is sent
@@ -27,15 +27,22 @@ Creates a LWP::UserAgent::Throttled object.
 
 See [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent).
 
-## load
+## throttle
 
-Get/set the number of seconds between each request. The default is one second.
+Get/set the number of seconds between each request for sites.
+
+    my $ua = LWP::UserAgent::Throttled->new();
+    $ua->throttle({ 'search.cpan.org' => 0.1, 'www.example.com' => 1 });
+    print $ua->throttle('search.cpan.org'), "\n";    # prints 0.1
+    print $ua->throttle('perl.org'), "\n";    # prints 0
 
 # AUTHOR
 
 Nigel Horne, `<njh at bandsman.co.uk>`
 
 # BUGS
+
+There is one global throttle level, so you can't have different levels for different sites.
 
 # SEE ALSO
 

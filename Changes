@@ -2,6 +2,7 @@ Revision history for LWP-UserAgent-Throttled
 
 0.03
 	Throttle each site independantly
+	Changed 'load' method to 'throttle'
 
 0.02	Fri May 26 14:18:13 EDT 2017
 	Support load times which include fractions of a second

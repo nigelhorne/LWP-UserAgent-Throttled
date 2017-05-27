@@ -23,7 +23,7 @@ Some sites with REST APIs, such as openstreetmap.org, will blacklist you if you 
 
     use LWP::UserAgent::Throttled;
     my $ua = LWP::UserAgent::Throttled->new();
-    $ua->load(5);
+    $ua->throttle({ 'www.example.com' => 5 });
     print $ua->get('http://www.example.com');
     sleep (2);
     print $ua->get('http://www.example.com');	# Will wait at least 3 seconds before the GET is sent
@@ -42,7 +42,7 @@ sub new {
 	my $class = shift;
 
 	my $rc = $class->SUPER::new(@_);
-	$rc->{'load'} = 1;
+	$rc->{'throttle'} = ();
 	
 	return bless $rc, $class;
 }
@@ -58,11 +58,11 @@ sub send_request {
 	my ($request, $arg, $size) = @_;
 	my $host = $request->uri()->host();
 
-	if(defined($self->{'load'})) {
+	if(defined($self->{'throttle'})) {
 
-		if($self->{$host}->{'lastcallended'}) {
+		if($self->{'lastcallended'}->{$host}) {
 			my $now = Time::HiRes::time();
-			my $waittime = $self->{'load'} - (Time::HiRes::time() - $self->{$host}->{'lastcallended'});
+			my $waittime = $self->{'throttle'}->{$host} - (Time::HiRes::time() - $self->{'lastcallended'}->{$host});
 
 			if($waittime > 0) {
 				Time::HiRes::usleep($waittime * 1e6);
@@ -70,25 +70,37 @@ sub send_request {
 		}
 	}
 	my $rc = $self->SUPER::send_request(@_);
-	$self->{$host}->{'lastcallended'} = Time::HiRes::time();
+	$self->{'lastcallended'}{$host} = Time::HiRes::time();
 	return $rc;
 }
 
-=head2 load
+=head2 throttle
 
-Get/set the number of seconds between each request. The default is one second.
+Get/set the number of seconds between each request for sites.
+
+    my $ua = LWP::UserAgent::Throttled->new();
+    $ua->throttle({ 'search.cpan.org' => 0.1, 'www.example.com' => 1 });
+    print $ua->throttle('search.cpan.org'), "\n";    # prints 0.1
+    print $ua->throttle('perl.org'), "\n";    # prints 0
 
 =cut
 
-sub load {
+sub throttle {
 	my $self = shift;
-	my $load = shift;
 
-	if($load) {
-		$self->{'load'} = $load;
+	return if(!defined($_[0]));
+
+	if(ref($_[0]) eq 'HASH') {
+		my %throttles = %{$_[0]};
+
+		foreach my $host(keys %throttles) {
+			$self->{'throttle'}{$host} = $throttles{$host};
+		}
+		return;
 	}
 
-	return $self->{'load'};
+	my $host = shift;
+	return $self->{'throttle'}{$host} ? $self->{'throttle'}{$host} : 0;
 }
 
 =head1 AUTHOR
