@@ -55,11 +55,14 @@ See L<LWP::UserAgent>.
 
 sub send_request {
 	my $self = shift;
+	my ($request, $arg, $size) = @_;
+	my $host = $request->uri()->host();
 
 	if(defined($self->{'load'})) {
-		if($self->{'lastcallended'}) {
+
+		if($self->{$host}->{'lastcallended'}) {
 			my $now = Time::HiRes::time();
-			my $waittime = $self->{'load'} - (Time::HiRes::time() - $self->{'lastcallended'});
+			my $waittime = $self->{'load'} - (Time::HiRes::time() - $self->{$host}->{'lastcallended'});
 
 			if($waittime > 0) {
 				Time::HiRes::usleep($waittime * 1e6);
@@ -67,7 +70,7 @@ sub send_request {
 		}
 	}
 	my $rc = $self->SUPER::send_request(@_);
-	$self->{'lastcallended'} = Time::HiRes::time();
+	$self->{$host}->{'lastcallended'} = Time::HiRes::time();
 	return $rc;
 }
 
@@ -94,7 +97,7 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 =head1 BUGS
 
-There is one global throttle, it should be per site.
+There is one global throttle level, so you can't have different levels for different sites.
 
 =head1 SEE ALSO
 
