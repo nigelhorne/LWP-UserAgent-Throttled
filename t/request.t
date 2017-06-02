@@ -31,7 +31,7 @@ THROTTLE: {
 	$ua->ssl_opts(verify_hostname => 0);
 	time_atmost(sub { $response = $ua->get('https://www.perl.org/'); }, 8, 'should not be throttled');
 	ok($response->is_success());
-	ok(sleep(8) == 8);
+	is(sleep(8), 8, 'Verify waited for 8 seconds');
 
 	time_between(sub { $response = $ua->get('http://search.cpan.org/'); }, 1, 6, 'should be throttled to 2 seconds, not 10');
 	ok($response->is_success());
