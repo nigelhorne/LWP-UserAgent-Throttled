@@ -1,7 +1,7 @@
-Makefile.PL
 Changes
 lib/LWP/UserAgent/Throttled.pm
 LICENSE
+Makefile.PL
 MANIFEST
 MANIFEST.SKIP
 README
@@ -12,5 +12,7 @@ t/cv.t
 t/pod-cm.t
 t/pod.t
 t/request.t
+t/snippets.t
 t/spelling.t
 t/used.t
+t/vars.t

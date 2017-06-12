@@ -2,12 +2,13 @@
 
 use warnings;
 use strict;
-use Time::HiRes;
 use Test::Most tests => 15;
+use LWP::Protocol::https;
+use Test::Timer;
 
 BEGIN {
 	use_ok('LWP::UserAgent::Throttled');
-	use_ok('Test::Timer');
+	use_ok('Time::HiRes');
 }
 
 THROTTLE: {
@@ -41,8 +42,10 @@ THROTTLE: {
 		my $timetaken = Time::HiRes::time() - $start;
 
 		SKIP: {
-			diag("timetaken = $timetaken. Not testing throttling");
-			skip "The system is too slow to run timing tests (timer = $timetaken)", 4 if($timetaken >= 9);
+			if($timetaken >= 9) {
+				diag("timetaken = $timetaken. Not testing throttling");
+				skip "The system is too slow to run timing tests (timer = $timetaken)", 4;
+			}
 			time_between(sub { $response = $ua->get('http://search.cpan.org/'); }, 1, 6, 'should be throttled to 2 seconds, not 10');
 			ok($response->is_success());
 

@@ -19,6 +19,7 @@ WriteMakefile(
 	# 'Test::Kwalitee' => 0,
     },
     PREREQ_PM => {
+    	'LWP' => 0,
 	'LWP::UserAgent' => 0,
 	'Time::HiRes' => 0,
     },
