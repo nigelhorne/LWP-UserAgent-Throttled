@@ -41,12 +41,13 @@ THROTTLE: {
 		my $timetaken = Time::HiRes::time() - $start;
 
 		SKIP: {
-			skip "The system is too slow to run timing tests (timer = $timetaken)", 2 if($timetaken >= 9);
+			diag("timetaken = $timetaken. Not testing throttling");
+			skip "The system is too slow to run timing tests (timer = $timetaken)", 4 if($timetaken >= 9);
 			time_between(sub { $response = $ua->get('http://search.cpan.org/'); }, 1, 6, 'should be throttled to 2 seconds, not 10');
 			ok($response->is_success());
-		}
 
-		time_atleast(sub { $response = $ua->get('http://search.cpan.org/'); }, 9, 'should be fully throttled');
-		ok($response->is_success());
+			time_atleast(sub { $response = $ua->get('http://search.cpan.org/'); }, 9, 'should be fully throttled');
+			ok($response->is_success());
+		}
 	}
 }
