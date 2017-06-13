@@ -11,6 +11,7 @@ t/coverage.t
 t/cv.t
 t/pod-cm.t
 t/pod.t
+t/port.t
 t/request.t
 t/snippets.t
 t/spelling.t
