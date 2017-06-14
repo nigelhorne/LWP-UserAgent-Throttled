@@ -2,7 +2,7 @@
 
 use warnings;
 use strict;
-use Test::Most tests => 15;
+use Test::Most tests => 14;
 use LWP::Protocol::https;
 use Test::Timer;
 
@@ -13,7 +13,7 @@ BEGIN {
 
 THROTTLE: {
 	SKIP: {
-		skip 'Time::HiRes::usleep required for testing throttling', 13 unless(&Time::HiRes::d_usleep);
+		skip 'Time::HiRes::usleep required for testing throttling', 12 unless(&Time::HiRes::d_usleep);
 
 		diag('This will take some time because of sleeps');
 
@@ -37,9 +37,10 @@ THROTTLE: {
 		my $start = Time::HiRes::time();
 		time_atmost(sub { $response = $ua->get('https://www.perl.org/'); }, 8, 'should not be throttled');
 		ok($response->is_success());
-		is(sleep(8), 8, 'Verify waited for 8 seconds');
 
-		my $timetaken = Time::HiRes::time() - $start;
+		sleep(8);
+
+		my $timetaken = Time::HiRes::time() - $start;	# Don't trust the return value from sleep
 
 		SKIP: {
 			if($timetaken >= 9) {
