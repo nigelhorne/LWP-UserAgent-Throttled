@@ -5,6 +5,7 @@ use strict;
 use Test::Most tests => 14;
 use LWP::Protocol::https;
 use Test::Timer;
+use IO::Socket::INET;
 
 BEGIN {
 	use_ok('LWP::UserAgent::Throttled');
@@ -13,6 +14,12 @@ BEGIN {
 
 THROTTLE: {
 	SKIP: {
+		my $s = IO::Socket::INET->new(
+			PeerAddr => 'search.cpan.org:80',
+			Timeout => 10
+		);
+		skip 'Internet connection required for testing', 12 unless($s);
+
 		skip 'Time::HiRes::usleep required for testing throttling', 12 unless(&Time::HiRes::d_usleep);
 
 		diag('This will take some time because of sleeps');

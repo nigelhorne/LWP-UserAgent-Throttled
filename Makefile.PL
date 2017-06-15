@@ -16,6 +16,7 @@ WriteMakefile(
 	'Test::Most' => 0,
 	'Test::Timer' => 2.01,
 	'LWP::Protocol::https' => 0,
+	'IO::Socket::INET' => 0,
 	# 'Test::Kwalitee' => 0,
     },
     PREREQ_PM => {
