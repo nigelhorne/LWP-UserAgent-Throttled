@@ -4,7 +4,7 @@ Throttle requests to a site
 
 # VERSION
 
-Version 0.06
+Version 0.06.1
 
 # SYNOPSIS
 
