@@ -16,15 +16,20 @@ THROTTLE: {
 	SKIP: {
 		my $s = IO::Socket::INET->new(
 			PeerAddr => 'search.cpan.org:80',
-			Timeout => 10
+			Timeout => 2	# Set low to try to catch slow machines
 		);
-		skip 'Internet connection required for testing', 12 unless($s);
+		skip 'Responsive machine and an Internet connection are required for testing', 12 unless($s);
 
 		skip 'Time::HiRes::usleep required for testing throttling', 12 unless(&Time::HiRes::d_usleep);
 
 		diag('This will take some time because of sleeps');
 
 		my $ua = new_ok('LWP::UserAgent::Throttled');
+
+		my $start = Time::HiRes::time();
+		$ua->get('https://www.perl.org/');
+		my $timetaken = Time::HiRes::time() - $start;
+		skip 'Responsive machine is required for testing', 11 if($timetaken >= 3);
 
 		$Test::Timer::alarm = 20;
 
@@ -37,17 +42,19 @@ THROTTLE: {
 		ok($ua->throttle('perl.org') == 0);
 
 		my $response;
+		# Will fail on slow machines
 		time_atmost(sub { $response = $ua->get('http://search.cpan.org/'); }, 8, 'should not be throttled');
 		ok($response->is_success());
 
 		$ua->ssl_opts(verify_hostname => 0);
-		my $start = Time::HiRes::time();
+		$start = Time::HiRes::time();
+		# Will fail on slow machines
 		time_atmost(sub { $response = $ua->get('https://www.perl.org/'); }, 8, 'should not be throttled');
 		ok($response->is_success());
 
 		sleep(8);
 
-		my $timetaken = Time::HiRes::time() - $start;	# Don't trust the return value from sleep
+		$timetaken = Time::HiRes::time() - $start;	# Don't trust the return value from sleep
 
 		SKIP: {
 			if($timetaken >= 9) {
