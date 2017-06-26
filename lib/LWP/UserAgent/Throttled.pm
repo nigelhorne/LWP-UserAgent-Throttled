@@ -95,7 +95,11 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 =head1 BUGS
 
-There is one global throttle level, so you can't have different levels for different sites.
+Please report any bugs or feature requests to C<bug-lwp-useragent-throttled at rt.cpan.org>,
+or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CGI-Info>.
+I will be notified, and then you'll
+automatically be notified of progress on your bug as I make changes.
 
 =head1 SEE ALSO
 
