@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker 6.64;	# 6.64 for TEST_REQUIRES
 
 WriteMakefile(
     NAME		=> 'LWP::UserAgent::Throttled',
@@ -12,16 +12,20 @@ WriteMakefile(
       ? ('LICENSE'=> 'GPL')
       : ()),
     PL_FILES	=> {},
-    BUILD_REQUIRES => {
+    TEST_REQUIRES => {
 	'Test::Most' => 0,
+	'Test::NoWarnings' => 0,
+	'Test::URI' => 0,
 	'Test::Timer' => 2.01,
-	'LWP::Protocol::https' => 0,
-	'IO::Socket::INET' => 0,
 	# 'Test::Kwalitee' => 0,
+    },
+    BUILD_REQUIRES => {
+	'IO::Socket::INET' => 0,
     },
     PREREQ_PM => {
     	'LWP' => 0,
 	'LWP::UserAgent' => 0,
+	'LWP::Protocol::https' => 0,
 	'Time::HiRes' => 0,
     },
     dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
