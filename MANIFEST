@@ -3,7 +3,6 @@ lib/LWP/UserAgent/Throttled.pm
 LICENSE
 Makefile.PL
 MANIFEST
-MANIFEST.SKIP
 README
 README.md
 t/00-load.t
