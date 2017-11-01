@@ -1,3 +1,9 @@
+[![Linux Build Status](https://travis-ci.org/nigelhorne/LWP-UserAgent-Throttled.svg?branch=master)](https://travis-ci.org/nigelhorne/LWP-UserAgent-Throttled)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/1t1yhvagx00c2qi8?svg=true)](https://ci.appveyor.com/project/nigelhorne/cgi-info)
+[![Dependency Status](https://dependencyci.com/github/nigelhorne/LWP-UserAgent-Throttled/badge)](https://dependencyci.com/github/nigelhorne/LWP-UserAgent-Throttled)
+[![Coverage Status](https://coveralls.io/repos/github/nigelhorne/LWP-UserAgent-Throttled/badge.svg?branch=master)](https://coveralls.io/github/nigelhorne/LWP-UserAgent-Throttled?branch=master)
+[![CPAN](https://img.shields.io/cpan/v/LWP-UserAgent-Throttled.svg)](http://search.cpan.org/~nhorne/LWP-UserAgent-Throttled/)
+
 # NAME
 
 LWP::UserAgent::Throttled - Throttle requests to a site
@@ -41,7 +47,7 @@ Nigel Horne, `<njh at bandsman.co.uk>`
 
 Please report any bugs or feature requests to `bug-lwp-useragent-throttled at rt.cpan.org`,
 or through the web interface at
-[http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CGI-Info](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CGI-Info).
+[http://rt.cpan.org/NoAuth/ReportBug.html?Queue=LWP-UserAgent-Throttled](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=LWP-UserAgent-Throttled).
 I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
