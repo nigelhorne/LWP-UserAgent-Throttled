@@ -1,5 +1,7 @@
 package LWP::UserAgent::Throttled;
 
+use warnings;
+use strict;
 use LWP;
 use Time::HiRes;
 use LWP::UserAgent;
