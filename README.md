@@ -3,6 +3,7 @@
 [![Dependency Status](https://dependencyci.com/github/nigelhorne/LWP-UserAgent-Throttled/badge)](https://dependencyci.com/github/nigelhorne/LWP-UserAgent-Throttled)
 [![Coverage Status](https://coveralls.io/repos/github/nigelhorne/LWP-UserAgent-Throttled/badge.svg?branch=master)](https://coveralls.io/github/nigelhorne/LWP-UserAgent-Throttled?branch=master)
 [![CPAN](https://img.shields.io/cpan/v/LWP-UserAgent-Throttled.svg)](http://search.cpan.org/~nhorne/LWP-UserAgent-Throttled/)
+[![Kritika Analysis Status](https://kritika.io/users/nigelhorne/repos/2745818166683002/heads/master/status.svg)](https://kritika.io/users/nigelhorne/repos/2745818166683002/heads/master/)
 
 # NAME
 
