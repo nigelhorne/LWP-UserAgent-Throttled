@@ -23,6 +23,7 @@ THROTTLE: {
 		skip 'Time::HiRes::usleep required for testing throttling', 12 unless(&Time::HiRes::d_usleep);
 
 		diag('This will take some time because of sleeps');
+		diag('Some tests will fail on slower machines and connections');
 
 		my $ua = new_ok('LWP::UserAgent::Throttled');
 
