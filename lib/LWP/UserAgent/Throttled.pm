@@ -28,9 +28,9 @@ LWP::UserAgent::Throttled is a sub-class of LWP::UserAgent.
     use LWP::UserAgent::Throttled;
     my $ua = LWP::UserAgent::Throttled->new();
     $ua->throttle({ 'www.example.com' => 5 });
-    print $ua->get('http://www.example.com');
+    print $ua->get('http://www.example.com/page1.html');
     sleep (2);
-    print $ua->get('http://www.example.com');	# Will wait at least 3 seconds before the GET is sent
+    print $ua->get('http://www.example.com/page2.html');	# Will wait at least 3 seconds before the GET is sent
 
 =cut
 
