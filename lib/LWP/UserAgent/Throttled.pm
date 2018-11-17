@@ -71,6 +71,9 @@ Get/set the number of seconds between each request for sites.
     print $ua->throttle('search.cpan.org'), "\n";    # prints 0.1
     print $ua->throttle('perl.org'), "\n";    # prints 0
 
+When setting a throttle it returns itself,
+so you can daisy chain messages.
+
 =cut
 
 sub throttle {
@@ -84,7 +87,7 @@ sub throttle {
 		foreach my $host(keys %throttles) {
 			$self->{'throttle'}{$host} = $throttles{$host};
 		}
-		return;
+		return $self;
 	}
 
 	my $host = shift;
@@ -137,7 +140,7 @@ L<http://search.cpan.org/dist/LWP-UserAgent-Throttled/>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2017 Nigel Horne.
+Copyright 2017-2018 Nigel Horne.
 
 This program is released under the following licence: GPL2
 
