@@ -13,8 +13,11 @@ t/coverage.t
 t/cv.t
 t/dist.t
 t/gv.t
+t/links.t
 t/manifest.t
 t/metrics.t
+t/no404s.t
+t/noopentickets.t
 t/noplan.t
 t/pod-cm.t
 t/pod.t
