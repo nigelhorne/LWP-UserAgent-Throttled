@@ -102,7 +102,7 @@ Nigel Horne, C<< <njh at bandsman.co.uk> >>
 
 Please report any bugs or feature requests to C<bug-lwp-useragent-throttled at rt.cpan.org>,
 or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CGI-Info>.
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=LWP-UserAgent-Throttled>.
 I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
@@ -120,17 +120,29 @@ You can also look for information at:
 
 =over 4
 
+=item * MetaCPAN
+
+L<https://metacpan.org/release/LWP-UserAgent-Throttled>
+
 =item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=LWP-UserAgent-Throttled>
+L<https://rt.cpan.org/NoAuth/Bugs.html?Dist=LWP-UserAgent-Throttled>
+
+=item * CPANTS
+
+L<http://cpants.cpanauthors.org/dist/LWP-UserAgent-Throttled>
+
+=item * CPAN Testers' Matrix
+
+L<http://matrix.cpantesters.org/?dist=LWP-UserAgent-Throttled>
 
 =item * CPAN Ratings
 
 L<http://cpanratings.perl.org/d/LWP-UserAgent-Throttled>
 
-=item * Search CPAN
+=item * CPAN Testers Dependencies
 
-L<http://search.cpan.org/dist/LWP-UserAgent-Throttled/>
+L<http://deps.cpantesters.org/?module=LWP::UserAgent::Throttled>
 
 =back
 

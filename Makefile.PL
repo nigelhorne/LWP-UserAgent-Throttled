@@ -37,12 +37,14 @@ WriteMakefile(
 		'meta-spec' => { version => 2 },
 		resources => {
 			repository => {
-			type => 'git',
-			url => 'git://github.com/nigelhorne/LWP-UserAgent-Throttled.git',
-			web => 'https://github.com/nigelhorne/LWP-UserAgent::Throttled',
+				type => 'git',
+				url => 'git://github.com/nigelhorne/LWP-UserAgent-Throttled.git',
+				web => 'https://github.com/nigelhorne/LWP-UserAgent::Throttled',
 			},
 			bugtracker => {
-				web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=LWP-UserAgent::Throttled',
+				# web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=LWP-UserAgent::Throttled',
+				web => 'https://github.com/nigelhorne/LWP-UserAgent-Throttled/issues',
+				url => 'https://github.com/nigelhorne/LWP-UserAgent-Throttled/issues',
 				mailto => 'bug-LWP-UserAgent::Throttled@rt.cpan.org'
 			}
 		},
