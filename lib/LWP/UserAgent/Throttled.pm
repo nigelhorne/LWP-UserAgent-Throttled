@@ -57,7 +57,12 @@ sub send_request {
 			}
 		}
 	}
-	my $rc = $self->SUPER::send_request(@_);
+	my $rc;
+	if(defined($self->{'_ua'})) {
+		$rc = $self->{'_ua'}->send_request(@_);
+	} else {
+		$rc = $self->SUPER::send_request(@_);
+	}
 	$self->{'lastcallended'}{$host} = Time::HiRes::time();
 	return $rc;
 }
@@ -92,6 +97,27 @@ sub throttle {
 
 	my $host = shift;
 	return $self->{'throttle'}{$host} ? $self->{'throttle'}{$host} : 0;
+}
+
+=head2 ua
+
+Get/set the user agent if you wish to use that rather than itself
+
+    use LWP::UserAgent::Cached;
+
+    $ua->ua(LWP::UserAgent::Cached(cachedir => '/home/home/.cache/lwp-cache'));
+    my $resp = $ua->get('https://www.nigelhorne.com');	# Checks in cache first and if fails, throttles
+
+=cut
+
+sub ua {
+	my($self, $ua) = @_;
+
+	if($ua) {
+		$self->{_ua} = $ua;
+	}
+
+	return $self->{_ua};
 }
 
 =head1 AUTHOR
