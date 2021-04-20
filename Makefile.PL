@@ -13,6 +13,7 @@ WriteMakefile(
 	  : ()),
 	PL_FILES	=> {},
 	TEST_REQUIRES => {
+		'LWP::Protocol::https' => 0,
 		'Test::Most' => 0,
 		'Test::NoWarnings' => 0,
 		'Test::URI' => 0,
@@ -25,7 +26,6 @@ WriteMakefile(
 	PREREQ_PM => {
 		'LWP' => 0,
 		'LWP::UserAgent' => 0,
-		'LWP::Protocol::https' => 0,
 		'Time::HiRes' => 0,
 	},
 	dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
