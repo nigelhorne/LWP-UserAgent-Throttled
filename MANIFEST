@@ -29,5 +29,6 @@ t/request.t
 t/snippets.t
 t/spelling.t
 t/strict.t
+t/ua.t
 t/used.t
 t/vars.t
