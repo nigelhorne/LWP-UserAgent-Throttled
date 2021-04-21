@@ -105,8 +105,8 @@ Get/set the user agent if you wish to use that rather than itself
 
     use LWP::UserAgent::Cached;
 
-    $ua->ua(LWP::UserAgent::Cached(cachedir => '/home/home/.cache/lwp-cache'));
-    my $resp = $ua->get('https://www.nigelhorne.com');	# Checks in cache first and if fails, throttles
+    $ua->ua(LWP::UserAgent::Cached->new(cache_dir => '/home/home/.cache/lwp-cache'));
+    my $resp = $ua->get('https://www.nigelhorne.com');	# Throttles, then checks cache, then gets
 
 =cut
 
