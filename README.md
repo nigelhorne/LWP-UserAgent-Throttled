@@ -11,7 +11,7 @@ LWP::UserAgent::Throttled - Throttle requests to a site
 
 # VERSION
 
-Version 0.07.1
+Version 0.08
 
 # SYNOPSIS
 

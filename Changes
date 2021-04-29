@@ -1,5 +1,8 @@
 Revision history for LWP-UserAgent-Throttled
 
+0.08	Thu Apr 29 14:16:30 EDT 2021
+	Somehow the last release didn't go out
+
 0.07.1	Wed Apr 21 10:28:14 EDT 2021
 	Fix mymeta
 

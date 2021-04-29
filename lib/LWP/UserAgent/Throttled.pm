@@ -14,11 +14,11 @@ LWP::UserAgent::Throttled - Throttle requests to a site
 
 =head1 VERSION
 
-Version 0.07.1
+Version 0.08
 
 =cut
 
-our $VERSION = '0.07.1';
+our $VERSION = '0.08';
 
 =head1 SYNOPSIS
 
