@@ -37,10 +37,10 @@ THROTTLE: {
 		$ua->timeout(15);
 		$ua->env_proxy(1);
 
-		ok($ua->throttle('search.cpan.org') == 0);
+		cmp_ok($ua->throttle('search.cpan.org'), '==', 0, 'Thottle value initialises to 0');
 		$ua->throttle({ 'search.cpan.org' => 10 });
-		ok($ua->throttle('search.cpan.org') == 10);
-		ok($ua->throttle('perl.org') == 0);
+		cmp_ok($ua->throttle('search.cpan.org'), '==', 10, 'Can set throttle value');
+		cmp_ok($ua->throttle('perl.org'), '==', 0, 'Thottle value on affects requested site');
 
 		my $response;
 		# Will fail on slow machines
@@ -60,7 +60,7 @@ THROTTLE: {
 		SKIP: {
 			if($timetaken >= 9) {
 				diag("timetaken = $timetaken. Not testing throttling");
-				skip "The system is too slow to run timing tests (timer = $timetaken)", 4;
+				skip("The system is too slow to run timing tests (timer = $timetaken)", 4);
 			}
 			time_between(sub { $response = $ua->get('http://search.cpan.org/'); }, 1, 6, 'should be throttled to 2 seconds, not 10');
 			ok($response->is_success());
