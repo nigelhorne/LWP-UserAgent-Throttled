@@ -30,7 +30,7 @@ THROTTLE: {
 		my $start = Time::HiRes::time();
 		$ua->get('https://www.perl.org/');
 		my $timetaken = Time::HiRes::time() - $start;
-		skip 'Responsive machine is required for testing', 11 if($timetaken >= 3);
+		skip('Responsive machine is required for testing', 12) if($timetaken >= 3);
 
 		$Test::Timer::alarm = 20;
 
