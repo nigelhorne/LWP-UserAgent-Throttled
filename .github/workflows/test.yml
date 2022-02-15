@@ -1,3 +1,6 @@
+---
+# See https://github.com/actions/virtual-environments
+
 on:
   push:
     branches:
@@ -9,9 +12,16 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: ['windows-latest', 'macos-latest', 'ubuntu-latest']
-        perl: [ '5.30', '5.28' ]
+        os:
+          - macos-11
+          - macos-10.15
+          - ubuntu-20.04
+          - ubuntu-18.04
+          - windows-2022
+          - windows-2019
+        perl: ['5.34', '5.32', '5.30', '5.28', '5.22']
     name: Perl ${{ matrix.perl }} on ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v1
@@ -27,3 +37,5 @@ jobs:
           cpanm -iqn --skip-satisfied --installdeps --notest .
       - name: Run Tests
         run: prove -l -b t
+        env:
+          AUTHOR_TESTING: 1

@@ -2,7 +2,7 @@
 
 use warnings;
 use strict;
-use Test::Most tests => 5;
+use Test::Most tests => 6;
 
 BEGIN {
 	use_ok('LWP::UserAgent::Throttled');
@@ -13,13 +13,13 @@ UA: {
 	my $ua = new_ok('LWP::UserAgent::Throttled');
 	my $t = Tester->new();
 
-	is($t->count(), 0, 'Initialised correctly');
+	cmp_ok($t->count(), '==', 0, 'Initialised correctly');
 
-	$ua->ua($t);
+	cmp_ok($ua->ua($t), 'eq', $t, 'Setting the useragent returns the useragent');
 
-	$ua->get('https://www.perl.org/');
+	$ua->get('http://www.perl.org/');
 
-	is($t->count(), 1, 'Used the correct ua');
+	cmp_ok($t->count(), '==', 1, 'Used the correct ua');
 }
 
 1;
@@ -41,8 +41,9 @@ sub send_request {
 	return bless { };
 }
 
-sub redirects { return 0; }
 sub code { return 0; }
+sub header { return 0; }	# http://www.cpantesters.org/cpan/report/55bb4f64-8d7e-11ec-adcf-8cefa471f67a
+sub redirects { return 0; }
 
 sub count {
 	my $self = shift;
