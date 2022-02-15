@@ -38,7 +38,7 @@ sub send_request {
 	my $self = shift;
 
 	$self->{count}++;
-	return bless { };
+	return bless { }, __PACKAGE__;
 }
 
 sub code { return 0; }
