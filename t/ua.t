@@ -2,11 +2,10 @@
 
 use warnings;
 use strict;
-use Test::Most tests => 6;
+use Test::Most tests => 5;
 
 BEGIN {
 	use_ok('LWP::UserAgent::Throttled');
-	use_ok('Time::HiRes');
 }
 
 UA: {
