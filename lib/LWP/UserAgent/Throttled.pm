@@ -49,13 +49,11 @@ sub send_request {
 	my $request = $_[0];
 	my $host = $request->uri()->host();
 
-	if((defined($self->{'throttle'})) && $self->{'throttle'}{$host}) {
-		if($self->{'lastcallended'}{$host}) {
-			my $waittime = $self->{'throttle'}{$host} - (Time::HiRes::time() - $self->{'lastcallended'}{$host});
+	if((defined($self->{'throttle'})) && $self->{'throttle'}{$host} && $self->{'lastcallended'}{$host}) {
+		my $waittime = $self->{'throttle'}{$host} - (Time::HiRes::time() - $self->{'lastcallended'}{$host});
 
-			if($waittime > 0) {
-				Time::HiRes::usleep($waittime * 1e6);
-			}
+		if($waittime > 0) {
+			Time::HiRes::usleep($waittime * 1e6);
 		}
 	}
 	my $rc;
@@ -173,7 +171,7 @@ L<http://deps.cpantesters.org/?module=LWP::UserAgent::Throttled>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2017-2023 Nigel Horne.
+Copyright 2017-2024 Nigel Horne.
 
 This program is released under the following licence: GPL2
 
