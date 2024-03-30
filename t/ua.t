@@ -2,7 +2,7 @@
 
 use warnings;
 use strict;
-use Test::Most tests => 5;
+use Test::Most tests => 6;
 
 BEGIN {
 	use_ok('LWP::UserAgent::Throttled');
@@ -15,6 +15,7 @@ UA: {
 	cmp_ok($t->count(), '==', 0, 'Initialised correctly');
 
 	cmp_ok($ua->ua($t), 'eq', $t, 'Setting the useragent returns the useragent');
+	cmp_ok($ua->ua(), 'eq', $t, 'Getting the useragent returns the useragent');
 
 	$ua->get('http://www.perl.org/');
 
