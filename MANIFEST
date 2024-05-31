@@ -21,6 +21,7 @@ t/gv.t
 t/links.t
 t/manifest.t
 t/metrics.t
+t/modules-used.t
 t/no404s.t
 t/noopentickets.t
 t/noplan.t
@@ -33,5 +34,4 @@ t/port.t
 t/request.t
 t/strict.t
 t/ua.t
-t/used.t
 t/vars.t
