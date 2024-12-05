@@ -81,21 +81,17 @@ so you can daisy chain messages.
 =cut
 
 sub throttle {
-	my $self = shift;
+	my ($self, $args) = @_;
 
-	return if(!defined($_[0]));
+	return unless(defined($args));
 
-	if(ref($_[0]) eq 'HASH') {
-		my %throttles = %{$_[0]};
-
-		foreach my $host(keys %throttles) {
-			$self->{'throttle'}{$host} = $throttles{$host};
-		}
+	if(ref($args) eq 'HASH') {
+		# Merge the new throttles in with the previous throttles
+		$self->{throttle} = { %{$self->{throttle} || {}}, %{$args} };
 		return $self;
 	}
 
-	my $host = shift;
-	return $self->{'throttle'}{$host} ? $self->{'throttle'}{$host} : 0;
+	return $self->{throttle}{$args} || 0;
 }
 
 =head2 ua
