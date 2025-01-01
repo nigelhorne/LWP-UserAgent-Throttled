@@ -5,6 +5,7 @@ Revision history for LWP-UserAgent-Throttled
 	Use Test::DescribeMe to simplify tests
 	Use Test::Needs
 	Refactor throttle()
+	Added t/30-basics.t
 
 0.10	Mon Jun 17 09:00:44 EDT 2024
 	Fix http://www.cpantesters.org/cpan/report/55bb4f64-8d7e-11ec-adcf-8cefa471f67a
