@@ -72,8 +72,8 @@ Get/set the number of seconds between each request for sites.
 
     my $ua = LWP::UserAgent::Throttled->new();
     $ua->throttle({ 'search.cpan.org' => 0.1, 'www.example.com' => 1 });
-    print $ua->throttle('search.cpan.org'), "\n";    # prints 0.1
-    print $ua->throttle('perl.org'), "\n";    # prints 0
+    print $ua->throttle('search.cpan.org'), "\n";	# prints 0.1
+    print $ua->throttle('perl.org'), "\n";	# prints 0
 
 When setting a throttle it returns itself,
 so you can daisy chain messages.
