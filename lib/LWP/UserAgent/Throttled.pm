@@ -14,11 +14,11 @@ LWP::UserAgent::Throttled - Throttle requests to a site
 
 =head1 VERSION
 
-Version 0.11
+Version 0.12
 
 =cut
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 =head1 SYNOPSIS
 
@@ -167,7 +167,7 @@ L<http://deps.cpantesters.org/?module=LWP::UserAgent::Throttled>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2017-2024 Nigel Horne.
+Copyright 2017-2025 Nigel Horne.
 
 This program is released under the following licence: GPL2
 
