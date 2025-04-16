@@ -28,6 +28,7 @@ WriteMakefile(
 		'Test::Most' => 0,
 		'Test::Needs' => 0,
 		'Test::NoWarnings' => 0,
+		'Test::RequiresInternet' => 0,
 		'Test::Timer' => 2.01,
 		# 'Test::Kwalitee' => 0,
 	},
