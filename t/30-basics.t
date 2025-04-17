@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Time::HiRes;
-use Test::More tests => 10;
+use Test::More;
 use HTTP::Request;
 use Test::RequiresInternet ('www.example.com' => 'http');
 use HTTP::Response;
@@ -45,3 +45,5 @@ cmp_ok(($end_time - $mid_time), '>=', 2, 'Second request throttled correctly');
 my $custom_ua = new_ok('LWP::UserAgent');
 $ua->ua($custom_ua);
 is($ua->ua(), $custom_ua, 'Custom user agent set correctly');
+
+done_testing();
