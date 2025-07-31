@@ -3,8 +3,9 @@ package LWP::UserAgent::Throttled;
 use warnings;
 use strict;
 use LWP;
-use Time::HiRes;
 use LWP::UserAgent;
+use Time::HiRes;
+use URI;
 
 our @ISA = ('LWP::UserAgent');
 
@@ -47,9 +48,12 @@ sub send_request {
 
 	my $self = shift;
 	my $request = $_[0];
-	my $host = $request->uri()->host();
+	my $host = lc(URI->new($request->uri)->host());	# Normalize the URL
 
 	if((defined($self->{'throttle'})) && $self->{'throttle'}{$host} && $self->{'lastcallended'}{$host}) {
+		# Can't set a negative throttle
+		die "Throttle for $host must be >= 0" unless $self->{'throttle'}{$host} >= 0;
+
 		my $waittime = $self->{'throttle'}{$host} - (Time::HiRes::time() - $self->{'lastcallended'}{$host});
 
 		if($waittime > 0) {
