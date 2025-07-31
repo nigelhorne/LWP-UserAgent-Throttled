@@ -65,6 +65,8 @@ Redirects to other domains can confuse it, so you need to program those manually
 
 # SUPPORT
 
+This module is provided as-is without any warranty.
+
 You can find documentation for this module with the perldoc command.
 
     perldoc LWP::UserAgent::Throttled

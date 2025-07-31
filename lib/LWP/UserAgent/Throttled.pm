@@ -135,6 +135,8 @@ L<LWP::UserAgent>
 
 =head1 SUPPORT
 
+This module is provided as-is without any warranty.
+
 You can find documentation for this module with the perldoc command.
 
     perldoc LWP::UserAgent::Throttled
